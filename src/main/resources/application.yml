@@ -1,0 +1,43 @@
+spring:
+
+  profiles:
+    active: local
+
+  h2:
+    console:
+      enabled: true
+
+#  datasource:
+#    driver-class-name:
+#    url:
+#    username:
+#    password:
+#
+#  jpa:
+#    database-platform:
+#    hibernate:
+#      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        show_sql: true
+#    defer-datasource-initialization: true
+
+  jwt:
+    header: Authorization
+    secret: APPLE1BANANA2CIRCLE3DIAMOND4ELITE5FLY6GRANT7HYBERNATE8
+    access-token-validity-in-seconds: 180000
+    refresh-token-validity-in-seconds: 604800
+
+  cache:
+    type: redis
+
+  redis:
+    host: localhost
+    port: 6390
+
+api:
+  v1: /api/v1
+
+
+
