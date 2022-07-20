@@ -1,6 +1,7 @@
 package com.nbb.asiderback.domain.project.entity;
 
 import com.nbb.asiderback.domain.member.entity.Member;
+import com.nbb.asiderback.global.config.common.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Project {
+public class Project extends BaseEntity {
 
     @Id @GeneratedValue
     private Long id;

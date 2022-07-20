@@ -1,13 +1,14 @@
 package com.nbb.asiderback.domain.study.entity;
 
 import com.nbb.asiderback.domain.member.entity.Member;
+import com.nbb.asiderback.global.config.common.BaseEntity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class StudySchedule {
+public class StudySchedule extends BaseEntity {
 
     @Id @GeneratedValue
     private Long id;

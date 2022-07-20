@@ -1,5 +1,6 @@
 package com.nbb.asiderback.domain.member.entity;
 
+import com.nbb.asiderback.global.config.common.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Member {
+public class Member extends BaseEntity {
     @Id
     @Column(length = 20)
     private String id;

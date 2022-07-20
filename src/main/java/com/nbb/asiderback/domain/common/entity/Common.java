@@ -1,10 +1,12 @@
-package com.nbb.asiderback.domain.common;
+package com.nbb.asiderback.domain.common.entity;
+
+import com.nbb.asiderback.global.config.common.BaseEntity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "COMMON_CODE")
-public class Common {
+public class Common extends BaseEntity {
 
     @Id
     @Column(length = 12)

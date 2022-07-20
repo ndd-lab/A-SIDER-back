@@ -1,9 +1,11 @@
 package com.nbb.asiderback.domain.project.entity;
 
+import com.nbb.asiderback.global.config.common.BaseEntity;
+
 import javax.persistence.*;
 
 @Entity
-public class ProjectRecruit {
+public class ProjectRecruit extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "PROJECT_RECRUIT_ID")
