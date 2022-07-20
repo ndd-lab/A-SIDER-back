@@ -30,7 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-ui.html",
             "/webjars/**",
             "/swagger-ui/**",
-            "/h2-console/**"};
+            "/h2-console/**",
+            "/v2/api-docs"};
 
     private final String[] PERMIT_ALL_PATH = {"/api/v1/user/register","/api/v1/user/login","/api/v1/token/reissue","/exception/**"};
 
@@ -50,6 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .httpBasic().disable() // 기본설정 미사용
+                .cors()
+                .and()
                 .csrf().disable() // csrf 보안 미사용
 
                 //TODO : 추후 에러페이지 생성

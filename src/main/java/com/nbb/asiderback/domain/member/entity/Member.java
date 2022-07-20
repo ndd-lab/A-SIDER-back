@@ -1,13 +1,13 @@
 package com.nbb.asiderback.domain.member.entity;
 
-import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class Member {
     @Id
@@ -43,4 +43,14 @@ public class Member {
 
     @Column(name = "USE_FLAG", length = 1)
     private String useFlag;
+
+    @Column(length = 2)
+    private Integer career;
+
+    @Column(name= "SELF_INTRODUCTION", length = 200)
+    private String selfIntroduction;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MEMBER_REPUTATION_ID")
+    private List<MemberReputation> reputations;
 }
