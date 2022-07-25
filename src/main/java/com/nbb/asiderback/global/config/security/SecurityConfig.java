@@ -4,12 +4,15 @@ import com.nbb.asiderback.global.config.security.jwt.JwtAccessDeniedHandler;
 import com.nbb.asiderback.global.config.security.jwt.JwtAuthenticationEntryPoint;
 import com.nbb.asiderback.global.config.security.jwt.JwtTokenProvider;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -18,6 +21,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // TODO
     // WebSecurityConfigurerAdapter가 deprecated 되기 때문에 수정해야함
     // 참고 : https://www.inflearn.com/questions/547599
+
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     private final JwtTokenProvider jwtTokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
