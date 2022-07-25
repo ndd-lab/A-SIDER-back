@@ -3,16 +3,17 @@ package com.nbb.asiderback.global.error;
 import lombok.Getter;
 
 @Getter
-public enum ErrorCode {
+public enum StatusCode {
 
-    TOKEN_EXPIRE("101", "만료된 토큰", 401),
-    UNSUPPORTED_TOKEN("102", "지원하지 않는 토큰", 401);
+    SUCCESS("E000","성공",200),
+    CALL_API("E001","API 요청 완료",200),
+    API_LODING("E002","1분뒤 다시 시도해주세요.",200);
 
     private final String code;
     private final String message;
     private final int status;
 
-    ErrorCode(String code, String message, int status) {
+    StatusCode(String code, String message, int status) {
         this.code = code;
         this.message = message;
         this.status = status;
