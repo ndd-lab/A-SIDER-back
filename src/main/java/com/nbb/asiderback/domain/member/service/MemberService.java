@@ -4,7 +4,6 @@ import com.nbb.asiderback.domain.member.dto.MemberEmailDto;
 import com.nbb.asiderback.domain.member.dto.MemberNicknameDto;
 import com.nbb.asiderback.domain.member.dto.MemberRegisterDto;
 import com.nbb.asiderback.domain.member.entity.Member;
-import com.nbb.asiderback.domain.member.exception.EmailAlreadyExistsException;
 import com.nbb.asiderback.domain.member.exception.MemberAlreadyExistsException;
 import com.nbb.asiderback.domain.member.repository.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
