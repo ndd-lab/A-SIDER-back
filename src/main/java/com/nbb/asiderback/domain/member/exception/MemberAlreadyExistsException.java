@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class MemberAlreadyExistsException extends RuntimeException{
+public class MemberAlreadyExistsException extends RuntimeException {
     private final String id;
 
     @Builder

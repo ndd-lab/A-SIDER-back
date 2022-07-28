@@ -1,6 +1,10 @@
 package com.nbb.asiderback.domain.member.service;
 
+import com.nbb.asiderback.domain.member.dto.MemberEmailDto;
+import com.nbb.asiderback.domain.member.dto.MemberNicknameDto;
 import com.nbb.asiderback.domain.member.dto.MemberRegisterDto;
+import com.nbb.asiderback.domain.member.entity.Member;
+import com.nbb.asiderback.domain.member.exception.EmailAlreadyExistsException;
 import com.nbb.asiderback.domain.member.exception.MemberAlreadyExistsException;
 import com.nbb.asiderback.domain.member.repository.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,10 +29,46 @@ public class MemberService {
 
         requestDto.setUserAuthority();
 
-        return null;
+        Member member = memberRepository.save(requestDto.toEntity());
+
+        return MemberRegisterDto.Response.builder()
+                .id(member.getId())
+                .build();
     }
 
     private boolean isExistMember(MemberRegisterDto.Request requestDto) {
         return memberRepository.findById(requestDto.getId()).isPresent();
+    }
+
+    public MemberEmailDto.Response isExistEmail(MemberEmailDto.Request requestDto) {
+        boolean existEmail = false;
+
+        if (isExistEmailValidation(requestDto)){
+            existEmail = true;
+        }
+
+        return MemberEmailDto.Response.builder()
+                .existEmail(existEmail)
+                .build();
+    }
+
+    private boolean isExistEmailValidation(MemberEmailDto.Request requestDto) {
+        return memberRepository.findByEmail(requestDto.getEmail()).isPresent();
+    }
+
+    public MemberNicknameDto.Response isExistNickname(MemberNicknameDto.Request requestDto) {
+        boolean existNickname = false;
+
+        if (isExistNicknameValidation(requestDto)){
+            existNickname = true;
+        }
+
+        return MemberNicknameDto.Response.builder()
+                .existNickname(existNickname)
+                .build();
+    }
+
+    private boolean isExistNicknameValidation(MemberNicknameDto.Request requestDto) {
+        return memberRepository.findByNickname(requestDto.getNickname()).isPresent();
     }
 }
