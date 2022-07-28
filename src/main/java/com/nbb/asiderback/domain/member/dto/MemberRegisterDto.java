@@ -56,8 +56,12 @@ public class MemberRegisterDto {
     }
 
     @Getter
-    @NoArgsConstructor
     public static class Response {
+        private String id;
 
+        @Builder
+        public Response(String id) {
+            this.id = id;
+        }
     }
 }

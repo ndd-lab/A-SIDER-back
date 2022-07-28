@@ -1,5 +1,7 @@
 package com.nbb.asiderback.domain.member.api;
 
+import com.nbb.asiderback.domain.member.dto.MemberEmailDto;
+import com.nbb.asiderback.domain.member.dto.MemberNicknameDto;
 import com.nbb.asiderback.domain.member.dto.MemberRegisterDto;
 import com.nbb.asiderback.domain.member.service.MemberService;
 import com.nbb.asiderback.global.config.common.ResponseResult;
@@ -23,6 +25,18 @@ public class MemberController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseResult<MemberRegisterDto.Response> register(@RequestBody MemberRegisterDto.Request requestDto){
         return new ResponseService().getResponseResult(memberService.register(requestDto));
+    }
+
+    @GetMapping("/email")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseResult<MemberEmailDto.Response> isExistEmail(@RequestBody MemberEmailDto.Request requestDto){
+        return new ResponseService().getResponseResult(memberService.isExistEmail(requestDto));
+    }
+
+    @GetMapping("/nickname")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseResult<MemberNicknameDto.Response> isExistNickname(@RequestBody MemberNicknameDto.Request requestDto){
+        return new ResponseService().getResponseResult(memberService.isExistNickname(requestDto));
     }
 
 }
