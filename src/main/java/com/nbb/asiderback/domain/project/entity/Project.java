@@ -2,6 +2,7 @@ package com.nbb.asiderback.domain.project.entity;
 
 import com.nbb.asiderback.domain.member.entity.Member;
 import com.nbb.asiderback.global.config.common.BaseEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -51,4 +52,19 @@ public class Project extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name="PROJECT_RECRUIT_ID")
     private List<ProjectRecruit> projectRecruits;
+
+    @Builder
+    public Project (Integer ownerId, String title, String upperAddress, String lowerAddress,
+                    String contents, LocalDateTime startDate, LocalDateTime endDate,
+                    Long logoFileId, String teamColor) {
+        this.ownerId = ownerId;
+        this.title = title;
+        this.upperAddress = upperAddress;
+        this.lowerAddress = lowerAddress;
+        this.contents = contents;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.logoFileId = logoFileId;
+        this.teamColor = teamColor;
+    }
 }
