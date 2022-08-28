@@ -6,7 +6,7 @@ import lombok.Getter;
 public class MemberNicknameDto {
 
     @Getter
-    public class Request {
+    public static class Request {
         private String nickname;
 
         @Builder
@@ -16,7 +16,7 @@ public class MemberNicknameDto {
     }
 
     @Getter
-    public class Response {
+    public static class Response {
         private boolean existNickname;
 
         @Builder

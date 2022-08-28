@@ -1,10 +1,10 @@
 package com.nbb.asiderback.domain.member.service;
 
+import com.nbb.asiderback.domain.member.dto.MemberDTO;
 import com.nbb.asiderback.domain.member.dto.MemberEmailDto;
 import com.nbb.asiderback.domain.member.dto.MemberNicknameDto;
 import com.nbb.asiderback.domain.member.dto.MemberRegisterDto;
 import com.nbb.asiderback.domain.member.entity.Member;
-import com.nbb.asiderback.domain.member.exception.EmailAlreadyExistsException;
 import com.nbb.asiderback.domain.member.exception.MemberAlreadyExistsException;
 import com.nbb.asiderback.domain.member.repository.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -70,5 +70,10 @@ public class MemberService {
 
     private boolean isExistNicknameValidation(MemberNicknameDto.Request requestDto) {
         return memberRepository.findByNickname(requestDto.getNickname()).isPresent();
+    }
+
+    public String signup(MemberDTO memberDTO) {
+        Member member = memberDTO.toEntity();
+        return memberRepository.save(member).getId();
     }
 }

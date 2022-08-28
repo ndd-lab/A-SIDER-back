@@ -6,7 +6,7 @@ import lombok.Getter;
 public class MemberEmailDto {
 
     @Getter
-    public class Request {
+    public static class Request {
         private String email;
 
         @Builder
@@ -16,7 +16,7 @@ public class MemberEmailDto {
     }
 
     @Getter
-    public class Response {
+    public static class Response {
         private boolean existEmail;
 
         @Builder
