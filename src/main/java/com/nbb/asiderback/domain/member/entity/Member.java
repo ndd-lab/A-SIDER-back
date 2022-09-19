@@ -64,6 +64,7 @@ public class Member extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
     private Set<Authority> authorities;
 
+
     @Builder
     public Member(String id, String password, String email, String nickname, String upperAddress, String lowerAddress, String birth, String profileFileId, String type, Set<Authority> authorities) {
         this.id = id;

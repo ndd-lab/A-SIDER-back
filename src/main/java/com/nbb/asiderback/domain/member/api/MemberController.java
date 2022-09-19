@@ -10,6 +10,8 @@ import com.nbb.asiderback.global.config.common.service.ResponseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.Logger;
+
 @RestController
 @RequestMapping("${api.v1}/member")
 public class MemberController {
@@ -41,7 +43,12 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public String signup(@RequestBody MemberDTO memberDTO) {
-        return memberService.signup(memberDTO);
+    public ResponseResult<MemberDTO> signup(@RequestBody MemberDTO memberDTO) {
+        return new ResponseService().getResponseResult(memberService.signup(memberDTO));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseResult<MemberDTO> getMemberInfo(@PathVariable("id") String id) {
+        return new ResponseService().getResponseResult(memberService.getMemberInfo(id));
     }
 }

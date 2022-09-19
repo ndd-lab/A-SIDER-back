@@ -6,6 +6,7 @@ import com.nbb.asiderback.domain.member.dto.MemberNicknameDto;
 import com.nbb.asiderback.domain.member.dto.MemberRegisterDto;
 import com.nbb.asiderback.domain.member.entity.Member;
 import com.nbb.asiderback.domain.member.exception.MemberAlreadyExistsException;
+import com.nbb.asiderback.domain.member.repository.MemberQueryDslRepository;
 import com.nbb.asiderback.domain.member.repository.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,10 +15,12 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final MemberQueryDslRepository memberQueryDslRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public MemberService(MemberRepository memberRepository, PasswordEncoder passwordEncoder) {
+    public MemberService(MemberRepository memberRepository, MemberQueryDslRepository memberQueryDslRepository, PasswordEncoder passwordEncoder) {
         this.memberRepository = memberRepository;
+        this.memberQueryDslRepository = memberQueryDslRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -72,8 +75,16 @@ public class MemberService {
         return memberRepository.findByNickname(requestDto.getNickname()).isPresent();
     }
 
-    public String signup(MemberDTO memberDTO) {
+    public MemberDTO signup(MemberDTO memberDTO) {
         Member member = memberDTO.toEntity();
-        return memberRepository.save(member).getId();
+        MemberDTO result = new MemberDTO(memberRepository.save(member));
+        return result;
+    }
+
+    public MemberDTO getMemberInfo(String id) {
+        MemberDTO result = null;
+        Member memberEntity = memberQueryDslRepository.getMemberInfo(id);
+        result = MemberDTO.dtoBuilder().member(memberEntity).build();
+        return result;
     }
 }

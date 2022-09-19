@@ -31,6 +31,13 @@ public class MemberDTO {
     private Integer career;
     private String selfIntroduction;
 
+    @Builder(builderMethodName = "dtoBuilder")
+    public MemberDTO(Member member) {
+        this.id = member.getId();
+        this.password = member.getPassword();
+
+    }
+
     public Member toEntity() {
         return Member.builder()
                 .id(id)
